@@ -1,9 +1,12 @@
 package org.Viktor.assesment;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SummativeSums {
-    static void summativeSum(int[] array, int index) {
+    static void summativeSum(Integer[] array, int index) {
         int sum = 0;
 
         for(int i = 0; i < array.length; i++) {
@@ -14,12 +17,14 @@ public class SummativeSums {
     }
 
     public static void main(String[] args) {
-        int[] array1 = { 1, 90, -33, -55, 67, -16, 28, -55, 15 };
-        int[] array2 = { 999, -60, -77, 14, 160, 301 };
-        int[] array3 = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, -99 };
+        List<Integer[]> arrays = new ArrayList<>();
 
-        summativeSum(array1, 1);
-        summativeSum(array2, 2);
-        summativeSum(array3, 3);
+        arrays.add(new Integer[]{ 1, 90, -33, -55, 67, -16, 28, -55, 15 });
+        arrays.add(new Integer[]{ 999, -60, -77, 14, 160, 301 });
+        arrays.add(new Integer[]{ 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, -99 });
+
+        for(int i = 0; i < arrays.size(); i++) {
+            summativeSum(arrays.get(i), i + 1);
+        }
     }
 }
