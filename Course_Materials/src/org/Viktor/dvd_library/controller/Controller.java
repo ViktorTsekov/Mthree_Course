@@ -1,13 +1,16 @@
-package org.Viktor.dvd_library;
+package org.Viktor.dvd_library.controller;
+
+import org.Viktor.dvd_library.database.ConnectToDb;
+import org.Viktor.dvd_library.logic.Helper;
+import org.Viktor.dvd_library.dependency_injector.Injector;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Controller {
     private Helper helper;
     private ConnectToDb dbConnection;
 
-    Controller(Injector inj) {
+    public Controller(Injector inj) {
         helper = inj.makeHelper();
         dbConnection = inj.makeDbConnection();
     }
@@ -25,7 +28,7 @@ public class Controller {
         StringBuilder str = new StringBuilder();
 
         for(int i = 0; i < contents.size(); i++) {
-            str.append((i + 1) + ". " + contents.get(i) + "\n");
+            str.append((i + 1) + ". " + contents.get(i) + (i != contents.size() - 1 ? "\n" : ""));
         }
 
         return str.toString();
@@ -49,7 +52,7 @@ public class Controller {
                 String cur = contents.get(i);
                 String[] strings = cur.replaceAll("\\s+", "").split(",");
 
-                if(strings[0].equals(key)) {
+                if(strings[0].equals(key.replaceAll("\\s+", ""))) {
                     dvd = cur;
                     break;
                 }

@@ -1,11 +1,14 @@
-package org.Viktor.dvd_library;
+package org.Viktor.dvd_library.view;
+
+import org.Viktor.dvd_library.dependency_injector.Injector;
+import org.Viktor.dvd_library.controller.Controller;
 
 import java.util.Scanner;
 
 public class Interface {
     Controller controller;
     Scanner scanner;
-    Interface(Injector inj) {
+    public Interface(Injector inj) {
         controller = inj.makeController();
         scanner = inj.makeScanner();
     }
@@ -16,8 +19,8 @@ public class Interface {
         System.out.println("Hi, welcome to my dvd library!");
 
         while(true) {
-            System.out.println("\nChoose an option:\n 1. List all dvs's\n 2. Get a particular dvd\n 3. Add a new dvd\n 4. Update an existing dvd\n 5. Delete a dvd\n 6. Exit\n");
-            System.out.print("Input: "); input = scanner.nextInt();
+            System.out.println("\nChoose an option:\n 1. List all dvds\n 2. Get a particular dvd\n 3. Add a new dvd\n 4. Update an existing dvd\n 5. Delete a dvd\n 6. Exit\n");
+            System.out.print("Input: "); input = Integer.parseInt(scanner.nextLine());
 
             System.out.println();
             switch (input) {
@@ -27,7 +30,7 @@ public class Interface {
                     break;
                 case 2:
                     System.out.print("Enter index or a dvd title: ");
-                    String output = controller.getSingleDvd(scanner.next());
+                    String output = controller.getSingleDvd(scanner.nextLine());
                     System.out.println("\nRetrieved dvd:\n" + output);
                     break;
                 case 3:
@@ -36,12 +39,12 @@ public class Interface {
                     break;
                 case 4:
                     System.out.print("Enter dvd index: ");
-                    controller.editDvd(scanner.nextInt(), getUserInput());
+                    controller.editDvd(Integer.parseInt(scanner.nextLine()), getUserInput());
                     System.out.println("\nDvd edited successfully!");
                     break;
                 case 5:
                     System.out.print("Enter dvd index: ");
-                    controller.deleteDvd(scanner.nextInt());
+                    controller.deleteDvd(Integer.parseInt(scanner.nextLine()));
                     System.out.println("\nDvd deleted successfully!");
                     break;
                 case 6:
@@ -64,12 +67,12 @@ public class Interface {
         String studio;
         String userNote;
 
-        System.out.print("Movie Title: "); title = scanner.next(); str.append(title + ", ");
-        System.out.print("Release Date: "); releaseDate = scanner.next(); str.append(releaseDate + ", ");
-        System.out.print("MPAA Rating: "); mpaaRating = scanner.next(); str.append(mpaaRating + ", ");
-        System.out.print("Director's Name: "); directorsName = scanner.next(); str.append(directorsName + ", ");
-        System.out.print("Studio: "); studio = scanner.next(); str.append(studio + ", ");
-        System.out.print("Additional Note: "); userNote = scanner.next(); str.append(userNote + "\n");
+        System.out.print("Movie Title: "); title = scanner.nextLine(); str.append(title + ", ");
+        System.out.print("Release Date: "); releaseDate = scanner.nextLine(); str.append(releaseDate + ", ");
+        System.out.print("MPAA Rating: "); mpaaRating = scanner.nextLine(); str.append(mpaaRating + ", ");
+        System.out.print("Director's Name: "); directorsName = scanner.nextLine(); str.append(directorsName + ", ");
+        System.out.print("Studio: "); studio = scanner.nextLine(); str.append(studio + ", ");
+        System.out.print("Additional Note: "); userNote = scanner.nextLine(); str.append(userNote + "\n");
 
         return str.toString();
     }
