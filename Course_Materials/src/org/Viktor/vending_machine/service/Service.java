@@ -30,6 +30,8 @@ public class Service {
     }
 
     public String calculateChange(int changeInPennies) {
+        if (changeInPennies < 0) throw new IllegalArgumentException();
+
         int temp = changeInPennies;
 
         int quarters = 0;
